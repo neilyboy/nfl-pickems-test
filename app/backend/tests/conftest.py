@@ -3,6 +3,7 @@ import sys
 import pytest
 from datetime import datetime, timedelta
 from flask_bcrypt import Bcrypt
+from flask_login import login_user
 
 # Add the app directory to the Python path
 app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -25,7 +26,8 @@ def app_context():
         'SQLALCHEMY_DATABASE_URI': 'sqlite://',
         'WTF_CSRF_ENABLED': False,
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
-        'SECRET_KEY': 'test_secret_key'
+        'SECRET_KEY': 'test_secret_key',
+        'LOGIN_DISABLED': False
     })
 
     # Push an application context
@@ -54,7 +56,8 @@ def app(app_context):
 @pytest.fixture
 def client(app):
     """A test client for the app."""
-    return app.test_client()
+    with app.test_client() as client:
+        yield client
 
 @pytest.fixture
 def runner(app):
@@ -111,7 +114,8 @@ def _populate_test_data():
         season=2023,
         final_score_home=0,
         final_score_away=0,
-        winner=None
+        winner=None,
+        is_mnf=True
     )
     db.session.add(game2)
 

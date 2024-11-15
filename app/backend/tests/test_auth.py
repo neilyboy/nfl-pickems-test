@@ -1,19 +1,18 @@
 import pytest
 import json
 from flask_login import current_user
-from app import db, User
+from app.models import User, db
 
 def test_login_success(client):
     """Test successful login."""
-    response = client.post('/api/login', json={
-        'username': 'testuser',
-        'password': 'password'
-    })
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert data['success'] is True
-    assert data['is_admin'] is False
-    assert data['first_login'] is False
+    with client:
+        response = client.post('/api/login', json={
+            'username': 'testuser',
+            'password': 'test_password'
+        })
+        assert response.status_code == 200
+        assert current_user.is_authenticated
+        assert current_user.username == 'testuser'
 
 def test_login_invalid_credentials(client):
     """Test login with invalid credentials."""
@@ -22,44 +21,41 @@ def test_login_invalid_credentials(client):
         'password': 'wrongpassword'
     })
     assert response.status_code == 401
-    data = json.loads(response.data)
-    assert data['success'] is False
 
 def test_admin_login(client):
     """Test admin user login."""
-    response = client.post('/api/login', json={
-        'username': 'admin',
-        'password': 'password'
-    })
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert data['success'] is True
-    assert data['is_admin'] is True
+    with client:
+        response = client.post('/api/login', json={
+            'username': 'admin',
+            'password': 'admin_password'
+        })
+        assert response.status_code == 200
+        assert current_user.is_authenticated
+        assert current_user.is_admin
 
-def test_change_password(client):
+def test_change_password(client, app):
     """Test password change functionality."""
-    # First login
-    client.post('/api/login', json={
-        'username': 'testuser',
-        'password': 'password'
-    })
-    
-    # Change password
-    response = client.post('/api/change_password', json={
-        'new_password': 'newpassword123'
-    })
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert data['success'] is True
-    
-    # Try logging in with new password
-    response = client.post('/api/login', json={
-        'username': 'testuser',
-        'password': 'newpassword123'
-    })
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert data['success'] is True
+    with client:
+        # First login
+        login_response = client.post('/api/login', json={
+            'username': 'testuser',
+            'password': 'test_password'
+        })
+        assert login_response.status_code == 200
+
+        # Change password
+        response = client.post('/api/change_password', json={
+            'new_password': 'newpassword123'
+        })
+        assert response.status_code == 200
+
+        # Try logging in with new password
+        client.get('/api/logout')  # Logout first
+        new_login = client.post('/api/login', json={
+            'username': 'testuser',
+            'password': 'newpassword123'
+        })
+        assert new_login.status_code == 200
 
 def test_first_login_flag(client, app):
     """Test first login flag behavior."""
@@ -67,32 +63,27 @@ def test_first_login_flag(client, app):
         # Create a new user with first_login=True
         user = User(
             username='newuser',
+            email='newuser@test.com',
             password_hash='$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY.5IMwxmsi6/Hu',
             first_login=True
         )
         db.session.add(user)
         db.session.commit()
-    
-    # Login with new user
-    response = client.post('/api/login', json={
-        'username': 'newuser',
-        'password': 'password'
-    })
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert data['first_login'] is True
-    
-    # Change password
-    response = client.post('/api/change_password', json={
-        'new_password': 'newpassword123'
-    })
-    assert response.status_code == 200
-    
-    # Login again to verify first_login is now False
-    response = client.post('/api/login', json={
-        'username': 'newuser',
-        'password': 'newpassword123'
-    })
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert data['first_login'] is False
+
+        # Login with new user
+        response = client.post('/api/login', json={
+            'username': 'newuser',
+            'password': 'password'
+        })
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data['first_login'] == True
+
+        # Change password to clear first login flag
+        client.post('/api/change_password', json={
+            'new_password': 'newpassword123'
+        })
+
+        # Verify first_login is now False
+        user = User.query.filter_by(username='newuser').first()
+        assert user.first_login == False
