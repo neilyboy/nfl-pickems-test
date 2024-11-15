@@ -49,3 +49,252 @@
 2024-11-15 08:31:46,160 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
 2024-11-15 08:31:46,162 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
 2024-11-15 08:31:46,162 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:02:02,735 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:02:02,737 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:02:02,737 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:03:11,653 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:03:11,654 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:03:11,654 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:03:42,403 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:03:42,404 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:03:42,404 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:04:31,363 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:04:31,364 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:04:31,364 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:05:14,521 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:05:14,522 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:05:14,523 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:06:48,189 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:06:48,190 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:06:48,190 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:08:02,887 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:08:02,888 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:08:02,888 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:08:52,153 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:08:52,154 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:08:52,155 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:09:48,222 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:09:48,223 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:09:48,223 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:10:31,261 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:10:31,262 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:10:31,262 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:12:04,773 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:12:04,774 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:12:04,774 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:12:37,189 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:12:37,190 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:12:37,190 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:13:26,378 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:13:26,379 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:13:26,379 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:14:10,804 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:14:10,805 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:14:10,805 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:14:11,535 - app - ERROR - Unhandled exception: property 'is_authenticated' of 'User' object has no setter
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 30, in login
+    user.is_authenticated = True
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: property 'is_authenticated' of 'User' object has no setter
+2024-11-15 09:14:12,483 - app - ERROR - Unhandled exception: property 'is_authenticated' of 'User' object has no setter
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 30, in login
+    user.is_authenticated = True
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: property 'is_authenticated' of 'User' object has no setter
+2024-11-15 09:14:14,137 - app - ERROR - Unhandled exception: property 'is_authenticated' of 'User' object has no setter
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 30, in login
+    user.is_authenticated = True
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: property 'is_authenticated' of 'User' object has no setter
+2024-11-15 09:14:16,224 - app - ERROR - Unhandled exception: property 'is_authenticated' of 'User' object has no setter
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 301, in logout
+    current_user.is_authenticated = False
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: property 'is_authenticated' of 'User' object has no setter
+2024-11-15 09:16:46,914 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:16:46,915 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:16:46,915 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:17:15,718 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:17:15,720 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:17:15,720 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:17:53,414 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:17:53,415 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:17:53,415 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:17:57,520 - app - ERROR - Unhandled exception: 'Pick' object has no attribute 'team_id'
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 103, in picks
+    'team_id': pick.team_id,
+               ^^^^^^^^^^^^
+AttributeError: 'Pick' object has no attribute 'team_id'
+2024-11-15 09:17:58,092 - app - ERROR - Unhandled exception: 'Pick' object has no attribute 'team_id'
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 103, in picks
+    'team_id': pick.team_id,
+               ^^^^^^^^^^^^
+AttributeError: 'Pick' object has no attribute 'team_id'
+2024-11-15 09:17:58,536 - app - ERROR - Unhandled exception: 'Pick' object has no attribute 'team_id'
+Traceback (most recent call last):
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Neil\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Neil\CascadeProjects\nfl-pickems\app\backend\app\routes.py", line 103, in picks
+    'team_id': pick.team_id,
+               ^^^^^^^^^^^^
+AttributeError: 'Pick' object has no attribute 'team_id'
+2024-11-15 09:18:28,528 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:18:28,529 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:18:28,529 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:19:04,096 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:19:04,097 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:19:04,097 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:19:37,464 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:19:37,466 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:19:37,466 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:20:43,238 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:20:43,239 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:20:43,240 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:21:39,913 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:21:39,914 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:21:39,914 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:22:23,308 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:22:23,309 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:22:23,309 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:23:09,197 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:23:09,198 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:23:09,198 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:23:48,924 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:23:48,925 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:23:48,925 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:24:50,599 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:24:50,600 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:24:50,600 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:25:43,916 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:25:43,917 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:25:43,917 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:26:43,823 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:26:43,824 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:26:43,824 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:27:22,660 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:27:22,661 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:27:22,661 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:27:52,417 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:27:52,418 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:27:52,418 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:28:22,095 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:28:22,096 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:28:22,096 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:43:17,488 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:43:17,490 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:43:17,490 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:44:26,425 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:44:26,426 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:44:26,426 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:45:01,374 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:45:01,375 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:45:01,375 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:50:36,833 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:50:36,834 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:50:36,834 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:51:16,088 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:51:16,089 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:51:16,089 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:51:54,122 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:51:54,124 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:51:54,124 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:52:37,904 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:52:37,905 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:52:37,905 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:53:12,609 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:53:12,610 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:53:12,610 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:55:04,594 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:55:04,595 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:55:04,595 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:55:55,681 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:55:55,682 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:55:55,682 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:57:00,442 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:57:00,444 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:57:00,444 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 09:57:52,887 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 09:57:52,888 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 09:57:52,888 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:02:43,667 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:02:43,668 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:02:43,668 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:05:21,963 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:05:21,964 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:05:21,964 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:06:01,242 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:06:01,243 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:06:01,244 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:07:17,159 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:07:17,160 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:07:17,160 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:08:26,973 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:08:26,974 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:08:26,975 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:09:12,325 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:09:12,326 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:09:12,326 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:12:32,066 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:12:32,068 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:12:32,068 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 10:13:37,547 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 10:13:37,548 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 10:13:37,548 - apscheduler.scheduler - INFO - Scheduler started

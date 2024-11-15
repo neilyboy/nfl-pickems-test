@@ -3,7 +3,8 @@ import sys
 import pytest
 from datetime import datetime, timedelta
 from flask_bcrypt import Bcrypt
-from flask_login import login_user
+from flask_login import login_user, LoginManager
+from flask import session
 
 # Add the app directory to the Python path
 app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -12,6 +13,7 @@ sys.path.insert(0, app_path)
 # Set test environment variables
 os.environ['TESTING'] = 'true'
 os.environ['DATABASE_URL'] = 'sqlite://'  # Force in-memory database
+os.environ['SECRET_KEY'] = 'test_secret_key'
 
 # Import the app after setting environment variables
 from app import app as flask_app, db, bcrypt
@@ -27,15 +29,38 @@ def app_context():
         'WTF_CSRF_ENABLED': False,
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'SECRET_KEY': 'test_secret_key',
-        'LOGIN_DISABLED': False
+        'LOGIN_DISABLED': False,
+        'SESSION_PROTECTION': 'strong',
+        'PERMANENT_SESSION_LIFETIME': timedelta(minutes=30),
+        'SESSION_COOKIE_SECURE': False,  # Allow non-HTTPS in testing
+        'SESSION_COOKIE_HTTPONLY': True,
+        'REMEMBER_COOKIE_SECURE': False,  # Allow non-HTTPS in testing
+        'REMEMBER_COOKIE_HTTPONLY': True,
+        'SESSION_TYPE': 'filesystem'  # Use filesystem session for testing
     })
 
     # Push an application context
     ctx = flask_app.app_context()
     ctx.push()
-    
+
+    # Initialize Flask-Login's test environment
+    login_manager = LoginManager()
+    login_manager.init_app(flask_app)
+    login_manager.session_protection = 'strong'
+    login_manager.login_view = None
+    login_manager.login_message = None
+
+    # Create all database tables
+    db.create_all()
+
+    # Populate test data
+    _populate_test_data()
+
     yield flask_app
-    
+
+    # Clean up
+    db.session.remove()
+    db.drop_all()
     ctx.pop()
 
 @pytest.fixture(scope='function')
@@ -44,11 +69,17 @@ def app(app_context):
     # Create tables
     db.create_all()
     
+    # Clear any existing data
+    db.session.query(Pick).delete()
+    db.session.query(Game).delete()
+    db.session.query(User).delete()
+    db.session.commit()
+
     # Add test data
     _populate_test_data()
-    
-    yield flask_app
-    
+
+    yield app_context
+
     # Clean up
     db.session.remove()
     db.drop_all()
@@ -56,8 +87,55 @@ def app(app_context):
 @pytest.fixture
 def client(app):
     """A test client for the app."""
-    with app.test_client() as client:
-        yield client
+    # Configure app for testing
+    app.config.update({
+        'LOGIN_DISABLED': False,
+        'SESSION_PROTECTION': 'strong',
+        'TESTING': True,
+        'WTF_CSRF_ENABLED': False,
+        'SESSION_COOKIE_SECURE': False,  # Allow non-HTTPS in testing
+        'REMEMBER_COOKIE_SECURE': False,  # Allow non-HTTPS in testing
+        'SESSION_COOKIE_HTTPONLY': True,
+        'REMEMBER_COOKIE_HTTPONLY': True,
+        'REMEMBER_COOKIE_DURATION': timedelta(days=1)
+    })
+    
+    test_client = app.test_client()
+    # Configure client to handle sessions
+    test_client.environ_base = {
+        'wsgi.url_scheme': 'http',  # Use HTTP for testing
+        'REMOTE_ADDR': '127.0.0.1'
+    }
+    
+    # Start with a clean session
+    with test_client.session_transaction() as sess:
+        sess.clear()
+        # Ensure all session variables are cleared
+        for key in list(sess.keys()):
+            sess.pop(key)
+        sess.modified = True
+        # Ensure user is not authenticated
+        if '_user_id' in sess:
+            del sess['_user_id']
+        if '_fresh' in sess:
+            del sess['_fresh']
+    
+    yield test_client
+
+@pytest.fixture
+def authenticated_client(client, app):
+    """A test client that is already authenticated."""
+    # Get test user
+    user = User.query.filter_by(username='testuser').first()
+    
+    # Set up session in test client
+    with client.session_transaction() as sess:
+        sess.clear()  # Start fresh
+        sess['_user_id'] = str(user.id)  # Flask-Login expects string
+        sess['_fresh'] = True
+        sess.modified = True
+    
+    return client
 
 @pytest.fixture
 def runner(app):

@@ -41,22 +41,11 @@ def handle_error(e):
     # Log the error
     current_app.logger.error(f"Unhandled exception: {str(e)}", exc_info=True)
     
-    # Return generic error message in production
-    if current_app.config['ENV'] == 'production':
-        response = {
-            'error': True,
-            'message': 'An unexpected error occurred',
-            'status_code': 500
-        }
-    else:
-        # Include error details in development
-        response = {
-            'error': True,
-            'message': str(e),
-            'status_code': 500,
-            'type': type(e).__name__
-        }
-    
+    # Return error message
+    response = {
+        'error': True,
+        'message': 'An unexpected error occurred'
+    }
     return jsonify(response), 500
 
 def require_admin(f):
