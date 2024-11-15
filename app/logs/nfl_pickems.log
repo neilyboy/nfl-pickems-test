@@ -46,3 +46,6 @@
 2024-11-15 07:41:39,662 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
 2024-11-15 07:41:39,662 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
 2024-11-15 07:41:39,662 - apscheduler.scheduler - INFO - Scheduler started
+2024-11-15 08:31:46,160 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-15 08:31:46,162 - apscheduler.scheduler - INFO - Added job "update_games" to job store "default"
+2024-11-15 08:31:46,162 - apscheduler.scheduler - INFO - Scheduler started

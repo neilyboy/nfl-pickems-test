@@ -2,6 +2,7 @@ import os
 import sys
 import pytest
 from datetime import datetime, timedelta
+from flask_bcrypt import Bcrypt
 
 # Add the app directory to the Python path
 app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -12,7 +13,7 @@ os.environ['TESTING'] = 'true'
 os.environ['DATABASE_URL'] = 'sqlite://'  # Force in-memory database
 
 # Import the app after setting environment variables
-from app import app as flask_app, db
+from app import app as flask_app, db, bcrypt
 from app.models import User, Game, Pick
 
 @pytest.fixture(scope='session', autouse=True)
@@ -69,7 +70,7 @@ def _populate_test_data():
         is_admin=True,
         first_login=False
     )
-    admin.set_password('admin_password')
+    admin.password = bcrypt.generate_password_hash('admin_password').decode('utf-8')
     db.session.add(admin)
 
     user = User(
@@ -78,7 +79,7 @@ def _populate_test_data():
         is_admin=False,
         first_login=False
     )
-    user.set_password('test_password')
+    user.password = bcrypt.generate_password_hash('test_password').decode('utf-8')
     db.session.add(user)
 
     db.session.commit()  # Commit users first to get their IDs

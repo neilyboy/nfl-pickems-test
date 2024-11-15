@@ -11,11 +11,11 @@ PyJWT==2.8.0
 pytz==2023.3
 Werkzeug==2.3.7
 SQLAlchemy==2.0.20
+Flask-Migrate==4.0.5
 
 # Testing
 pytest==7.4.2
 pytest-cov==4.1.0
 
 # Database Migrations
-Flask-Migrate==4.0.5
 alembic==1.12.1
