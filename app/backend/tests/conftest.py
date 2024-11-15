@@ -1,16 +1,24 @@
-import pytest
 import os
+import sys
+import pytest
+from datetime import datetime, timedelta
+
+# Add the app directory to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from app import app as flask_app
 from app import db, User, Game, Pick
-from datetime import datetime, timedelta
 
 @pytest.fixture(scope='function')
 def app():
     """Create and configure a new app instance for each test."""
+    # Store original config
+    original_uri = flask_app.config['SQLALCHEMY_DATABASE_URI']
+    
     # Configure app for testing
     flask_app.config.update({
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': 'sqlite://',  # This creates an in-memory database
+        'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',  # in-memory database
         'WTF_CSRF_ENABLED': False,
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'SECRET_KEY': 'test_secret_key'
@@ -20,8 +28,11 @@ def app():
     ctx = flask_app.app_context()
     ctx.push()
 
-    # Create tables
+    # Initialize database
     db.create_all()
+
+    # Add test data
+    _populate_test_data()
 
     yield flask_app
 
@@ -30,19 +41,21 @@ def app():
     db.drop_all()
     ctx.pop()
 
-@pytest.fixture(scope='function')
+    # Restore original config
+    flask_app.config['SQLALCHEMY_DATABASE_URI'] = original_uri
+
+@pytest.fixture
 def client(app):
     """A test client for the app."""
     return app.test_client()
 
-@pytest.fixture(scope='function')
+@pytest.fixture
 def runner(app):
     """A test runner for the app's Click commands."""
     return app.test_cli_runner()
 
-@pytest.fixture(autouse=True)
-def _init_database(app):
-    """Initialize database with test data."""
+def _populate_test_data():
+    """Populate test data."""
     # Create test users
     admin = User(
         username='admin',
@@ -61,6 +74,8 @@ def _init_database(app):
     )
     user.set_password('test_password')
     db.session.add(user)
+
+    db.session.commit()  # Commit users first to get their IDs
 
     # Create test games
     game1 = Game(
@@ -89,12 +104,12 @@ def _init_database(app):
     )
     db.session.add(game2)
 
-    db.session.commit()
+    db.session.commit()  # Commit games to get their IDs
 
     # Create test picks
     pick1 = Pick(
-        user_id=2,  # testuser's ID
-        game_id=1,  # game1's ID
+        user_id=user.id,  # Use the actual user ID
+        game_id=game1.id,  # Use the actual game ID
         picked_team='KC',
         mnf_total_points=None,
         week=1
