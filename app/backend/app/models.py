@@ -26,6 +26,7 @@ class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     espn_id = db.Column(db.String(20), unique=True, nullable=False)
     week = db.Column(db.Integer, nullable=False)
+    season = db.Column(db.Integer, nullable=False)
     home_team = db.Column(db.String(3), nullable=False)
     away_team = db.Column(db.String(3), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)

@@ -70,7 +70,7 @@ def _populate_test_data():
         is_admin=True,
         first_login=False
     )
-    admin.password = bcrypt.generate_password_hash('admin_password').decode('utf-8')
+    admin.password = 'admin_password'
     db.session.add(admin)
 
     user = User(
@@ -79,10 +79,14 @@ def _populate_test_data():
         is_admin=False,
         first_login=False
     )
-    user.password = bcrypt.generate_password_hash('test_password').decode('utf-8')
+    user.password = 'test_password'
     db.session.add(user)
 
-    db.session.commit()  # Commit users first to get their IDs
+    try:
+        db.session.commit()  # Commit users first to get their IDs
+    except:
+        db.session.rollback()
+        raise
 
     # Create test games
     game1 = Game(
@@ -111,16 +115,24 @@ def _populate_test_data():
     )
     db.session.add(game2)
 
-    db.session.commit()  # Commit games to get their IDs
+    try:
+        db.session.commit()  # Commit games to get their IDs
+    except:
+        db.session.rollback()
+        raise
 
     # Create test picks
     pick1 = Pick(
-        user_id=user.id,  # Use the actual user ID
-        game_id=game1.id,  # Use the actual game ID
+        user_id=user.id,
+        game_id=game1.id,
         picked_team='KC',
         mnf_total_points=None,
         week=1
     )
     db.session.add(pick1)
 
-    db.session.commit()
+    try:
+        db.session.commit()
+    except:
+        db.session.rollback()
+        raise
