@@ -48,27 +48,32 @@ A full-stack web application for NFL game predictions and pick'em competitions.
 
 ### Required Environment Variables
 
-Create a `.env` file in the root directory. Required variables:
+The repository includes a `.env.example` file with all the required environment variables. Copy this file to create your own `.env`:
 
 ```env
 # Application Settings
-SECRET_KEY=your_secure_secret_key_here
 FLASK_ENV=production  # or development
+FLASK_APP=app
+SECRET_KEY=your_secure_secret_key_here
+
+# Database Settings
 DATABASE_URL=sqlite:///data/nfl_pickems.db
 
 # Logging Configuration
 LOG_LEVEL=INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
-LOG_FORMAT=%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # Security Settings
 SESSION_COOKIE_SECURE=True
 SESSION_COOKIE_HTTPONLY=True
-SESSION_COOKIE_SAMESITE=Lax
+REMEMBER_COOKIE_SECURE=True
+REMEMBER_COOKIE_HTTPONLY=True
+
+# Rate Limiting
 MAX_LOGIN_ATTEMPTS=5
 LOGIN_ATTEMPT_TIMEOUT=300  # seconds
 
-# API Configuration (if using ESPN API)
-ESPN_API_KEY=your_api_key_here
+# API Configuration
+REACT_APP_API_URL=http://localhost:5000
 ```
 
 ## Local Development Setup
