@@ -76,7 +76,7 @@ ESPN_API_KEY=your_api_key_here
 1. Clone the repository:
 ```bash
 git clone https://github.com/neilyboy/nfl-pickems-test.git
-cd nfl-pickems
+cd nfl-pickems-test
 ```
 
 2. Set up the backend:
@@ -134,7 +134,7 @@ sudo usermod -aG docker $USER
 ```bash
 # Clone repository
 git clone https://github.com/neilyboy/nfl-pickems-test.git
-cd nfl-pickems
+cd nfl-pickems-test
 
 # Create necessary directories
 mkdir -p data logs
@@ -175,7 +175,7 @@ sudo apt install nginx
 ```bash
 # Clone and setup
 git clone https://github.com/neilyboy/nfl-pickems-test.git
-cd nfl-pickems
+cd nfl-pickems-test
 
 # Backend setup
 python3.11 -m venv venv
