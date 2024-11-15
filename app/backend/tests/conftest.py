@@ -4,40 +4,51 @@ import pytest
 from datetime import datetime, timedelta
 
 # Add the app directory to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+app_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, app_path)
 
-# Import the app after setting up the path
+# Set test environment variables
+os.environ['TESTING'] = 'true'
+os.environ['DATABASE_URL'] = 'sqlite://'  # Force in-memory database
+
+# Import the app after setting environment variables
 from app import app as flask_app, db
 from app.models import User, Game, Pick
 
-@pytest.fixture(scope='function')
-def app():
-    """Create and configure a new app instance for each test."""
+@pytest.fixture(scope='session', autouse=True)
+def app_context():
+    """Create an application context for the entire test session."""
     # Configure app for testing
-    test_config = {
+    flask_app.config.update({
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': 'sqlite://',  # Pure in-memory database
+        'SQLALCHEMY_DATABASE_URI': 'sqlite://',
         'WTF_CSRF_ENABLED': False,
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'SECRET_KEY': 'test_secret_key'
-    }
+    })
 
-    # Update app config
-    flask_app.config.update(test_config)
+    # Push an application context
+    ctx = flask_app.app_context()
+    ctx.push()
+    
+    yield flask_app
+    
+    ctx.pop()
 
-    # Create application context
-    with flask_app.app_context():
-        # Create tables
-        db.create_all()
-        
-        # Add test data
-        _populate_test_data()
-        
-        yield flask_app
-        
-        # Cleanup
-        db.session.remove()
-        db.drop_all()
+@pytest.fixture(scope='function')
+def app(app_context):
+    """Set up a clean database for each test."""
+    # Create tables
+    db.create_all()
+    
+    # Add test data
+    _populate_test_data()
+    
+    yield flask_app
+    
+    # Clean up
+    db.session.remove()
+    db.drop_all()
 
 @pytest.fixture
 def client(app):
