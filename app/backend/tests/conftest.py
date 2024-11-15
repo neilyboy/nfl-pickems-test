@@ -6,43 +6,38 @@ from datetime import datetime, timedelta
 # Add the app directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from app import app as flask_app
-from app import db, User, Game, Pick
+# Import the app after setting up the path
+from app import app as flask_app, db
+from app.models import User, Game, Pick
 
 @pytest.fixture(scope='function')
 def app():
     """Create and configure a new app instance for each test."""
-    # Store original config
-    original_uri = flask_app.config['SQLALCHEMY_DATABASE_URI']
-    
     # Configure app for testing
-    flask_app.config.update({
+    test_config = {
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',  # in-memory database
+        'SQLALCHEMY_DATABASE_URI': 'sqlite://',  # Pure in-memory database
         'WTF_CSRF_ENABLED': False,
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'SECRET_KEY': 'test_secret_key'
-    })
+    }
 
-    # Create the application context
-    ctx = flask_app.app_context()
-    ctx.push()
+    # Update app config
+    flask_app.config.update(test_config)
 
-    # Initialize database
-    db.create_all()
-
-    # Add test data
-    _populate_test_data()
-
-    yield flask_app
-
-    # Cleanup
-    db.session.remove()
-    db.drop_all()
-    ctx.pop()
-
-    # Restore original config
-    flask_app.config['SQLALCHEMY_DATABASE_URI'] = original_uri
+    # Create application context
+    with flask_app.app_context():
+        # Create tables
+        db.create_all()
+        
+        # Add test data
+        _populate_test_data()
+        
+        yield flask_app
+        
+        # Cleanup
+        db.session.remove()
+        db.drop_all()
 
 @pytest.fixture
 def client(app):
